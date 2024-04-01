@@ -3,9 +3,10 @@ package com.example.savorcraft
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,16 +15,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,9 +35,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Checkbox
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,29 +44,28 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
-class Login : ComponentActivity() {
+class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TampilanLogin()
+            TampilanRegister()
         }
     }
 }
 
+
 @Composable
-fun TampilanLogin(){
+fun TampilanRegister(){
+    Surface(modifier = Modifier.fillMaxSize(),
+        color = Color(0xFFFFFFFF)) {
+
+    }
+    var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordCheck by remember { mutableStateOf("") }
     var checkedState by remember { mutableStateOf(false) }
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -72,9 +73,9 @@ fun TampilanLogin(){
     ) {
 
     }
-    Column {
+    Column (modifier = Modifier.verticalScroll(rememberScrollState())){
         Text(
-            text = "Masuk",
+            text = "Registrasi",
             style = TextStyle(
                 fontSize = 40.sp,
                 lineHeight = 44.sp,
@@ -86,18 +87,18 @@ fun TampilanLogin(){
         )
 
         Text(
-            text = "Selamat datang kembali! Masuk untuk mengakses pengalaman personal Anda",
+            text = "Segera daftarkan diri anda ke aplikasi ini untuk akses penuh ke fitur kami!",
             style = TextStyle(
                 fontSize = 18.sp,
                 lineHeight = 27.sp,
                 fontWeight = FontWeight(500),
                 color = Color(0xFF6B7280),
             ),
-            modifier = Modifier.padding(start = 20.dp, top = 26.dp)
+            modifier = Modifier.padding(start = 20.dp, top = 26.dp, end = 20.dp)
         )
 
         Text(
-            text = "Email",
+            text = "Nama Anda",
             modifier = Modifier.padding(start = 20.dp, top = 50.dp),
             style = TextStyle(
                 fontSize = 18.sp,
@@ -109,11 +110,41 @@ fun TampilanLogin(){
 
         OutlinedTextField(
             leadingIcon = {
-                          Icon(painter = painterResource(id = R.drawable.message35), contentDescription = null,
-                              tint = Color.Gray,
-                              modifier = Modifier
-                                  .width(24.dp)
-                                  .height(22.dp))
+                Icon(painter = painterResource(id = R.drawable.message35), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            value = nama,
+            onValueChange = { nama = it },
+            label = { Text("Nama Lengkap Kamu") },
+            modifier = Modifier
+                .padding(start = 20.dp, end = 20.dp)
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
+            )
+
+        )
+        Text(
+            text = "Email",
+            modifier = Modifier.padding(start = 20.dp, top = 16.dp),
+            style = TextStyle(
+                fontSize = 18.sp,
+                lineHeight = 27.sp,
+                fontWeight = FontWeight(500),
+                color = Color(0xFF1F2A37),
+            )
+        )
+
+        OutlinedTextField(
+            leadingIcon = {
+                Icon(painter = painterResource(id = R.drawable.message35), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
             },
             value = email,
             onValueChange = { email = it },
@@ -155,7 +186,44 @@ fun TampilanLogin(){
             },
             value = password,
             onValueChange = { password = it },
-            label = {Text("********") },
+            label = { Text("********") },
+            modifier = Modifier
+                .padding(start = 20.dp, end = 20.dp)
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
+            )
+        )
+
+        Text(
+            text = "Konfirmasi Password",
+            modifier = Modifier.padding(start = 20.dp, top = 16.dp),
+            style = TextStyle(
+                fontSize = 18.sp,
+                lineHeight = 27.sp,
+                fontWeight = FontWeight(500),
+                color = Color(0xFF1F2A37),
+            )
+        )
+
+        OutlinedTextField(
+            leadingIcon = {
+                Icon(painter = painterResource(id = R.drawable.lock1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            trailingIcon = {
+                Icon(painter = painterResource(id = R.drawable.hide1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            value = passwordCheck,
+            onValueChange = { passwordCheck = it },
+            label = { Text("********") },
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
                 .fillMaxWidth(),
@@ -294,7 +362,7 @@ fun TampilanLogin(){
         ) {
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "Belum punya akun?",
+                text = "Sudah punya akun?",
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally),
                 style = TextStyle(
@@ -313,7 +381,8 @@ fun TampilanLogin(){
                     lineHeight = 24.sp,
                     fontWeight = FontWeight(400),
                     color = Color(0xFF1C64F2),
-                    textAlign = TextAlign.Center,))
+                    textAlign = TextAlign.Center,)
+            )
         }
 
     }
@@ -323,8 +392,8 @@ fun TampilanLogin(){
 
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
-fun TampilanLoginPreview() {
+fun TampilanRegisterPreview() {
     SavorCraftTheme {
-        TampilanLogin()
+        TampilanRegister()
     }
 }
