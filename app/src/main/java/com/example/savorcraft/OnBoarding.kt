@@ -1,8 +1,11 @@
 package com.example.savorcraft
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -19,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,19 +33,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
-class MainActivity : ComponentActivity() {
+class OnBoarding : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SavorCraftTheme {
-
-            }
+            Onboarding()
         }
     }
 }
 
 @Composable
 fun Onboarding() {
+    val context = LocalContext.current
+    val startActivity = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { _ ->
+    }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFFFFFFFF)
@@ -89,7 +96,10 @@ fun Onboarding() {
         )
 
         IconButton(
-            onClick = { /*TODO*/ } ,
+            onClick = {
+                      val intent = Intent(context, Login::class.java)
+                        startActivity.launch(intent)
+            } ,
             modifier = Modifier
                 .width(320.dp)
                 .height(51.dp)

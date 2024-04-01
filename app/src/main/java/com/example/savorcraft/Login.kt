@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Checkbox
 import androidx.compose.ui.text.TextStyle
@@ -41,15 +42,21 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
 class Login : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SavorCraftTheme {
-
-            }
+            TampilanLogin()
         }
     }
 }
@@ -113,7 +120,11 @@ fun TampilanLogin(){
             label = {Text("contohemail@gmail.com") },
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
+            )
+
         )
 
         Text(
@@ -147,7 +158,10 @@ fun TampilanLogin(){
             label = {Text("********") },
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
+            )
         )
 
         Row(modifier = Modifier
@@ -229,24 +243,77 @@ fun TampilanLogin(){
                     .background(color = Color(0xFFD1D5DB)))
         }
 
-        Row {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(painter = painterResource(id = R.drawable.google), contentDescription = "",
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.padding(vertical = 16.dp)
+            ) {
+                IconButton(
+                    onClick = { /* TODO */ },
                     modifier = Modifier
                         .padding(1.dp)
-                        .width(50.dp)
-                        .height(50.dp))
-            }
+                        .width(60.dp)
+                        .height(60.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.google),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .width(50.dp)
+                            .height(51.dp)
+                    )
+                }
 
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(painter = painterResource(id = R.drawable.google), contentDescription = "",
+                IconButton(
+                    onClick = { /* TODO */ },
                     modifier = Modifier
                         .padding(1.dp)
-                        .width(50.dp)
-                        .height(50.dp))
+                        .width(60.dp)
+                        .height(60.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.fb),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .width(50.dp)
+                            .height(51.dp)
+                    )
+                }
             }
-
-
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Bottom
+        ) {
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = "Belum punya akun?",
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 24.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF6B7280),
+                    textAlign = TextAlign.Center,
+                )
+            )
+            ClickableText(text = AnnotatedString("Daftar"), onClick = {},
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 24.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF1C64F2),
+                    textAlign = TextAlign.Center,))
         }
 
     }
