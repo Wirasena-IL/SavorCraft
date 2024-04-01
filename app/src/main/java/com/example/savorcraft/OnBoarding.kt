@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -59,33 +62,31 @@ fun Onboarding() {
         modifier = Modifier.fillMaxSize()
     ){
         Image(
-            painter = painterResource(id = R.drawable.login1),
+            painter = painterResource(id = R.drawable.onboarding),
             contentDescription = "Login Image",
             modifier = Modifier
-                .size(width = 287.dp, height = 287.dp)
+                .size(width = 320.dp, height = 320.dp)
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 57.dp)
 
         )
         Text(
-            text = "Masuk",
+            text = "Bingung Bahannya ?",
             style = TextStyle(
-                fontSize = 40.sp,
+                fontSize = 32.sp,
                 lineHeight = 44.sp,
                 fontWeight = FontWeight(700),
                 color = Color(0xFF374151),
             ),
             modifier = Modifier
-                .padding(top = 296.dp)
-                .width(128.dp)
-                .height(44.dp)
+                .padding(top = 30.dp)
                 .align(Alignment.CenterHorizontally)
         )
         Text(
             modifier = Modifier
-                .padding(top = 26.dp)
+                .padding(top = 26.dp, start = 20.dp, end = 20.dp)
                 .align(Alignment.CenterHorizontally),
-            text = "Selamat datang kembali! Masuk",
+            text = "Savor Craft hadir dengan fitur Scanning bahan - bahan yang memudahkan Anda untuk mengetahui bahan tersebut dan mencari resep berdasarkan bahan yang tersedia.",
             style = TextStyle(
                 fontSize = 18.sp,
                 lineHeight = 27.sp,
@@ -95,28 +96,56 @@ fun Onboarding() {
             )
         )
 
-        IconButton(
-            onClick = {
-                      val intent = Intent(context, Login::class.java)
-                        startActivity.launch(intent)
-            } ,
+        Column(
             modifier = Modifier
-                .width(320.dp)
-                .height(51.dp)
-                .align(Alignment.CenterHorizontally)
-                .background(color = Color(0xFFF05252), shape = RoundedCornerShape(size = 8.dp))
-        ) {
-            Text(
-                text = "Masuk",
-                style = TextStyle(
-                    fontSize = 18.sp,
-                    lineHeight = 27.sp,
-                    fontWeight = FontWeight(700),
-                    color = Color(0xFFFFFFFF),
-                ),
-                modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
-            )
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Bottom){
+            IconButton(
+                onClick = { /*TODO*/ } ,
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .width(320.dp)
+                    .height(51.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .background(color = Color(0xFFF05252), shape = RoundedCornerShape(size = 8.dp))
+            ) {
+                Text(
+                    text = "Registrasi",
+                    style = TextStyle(
+                        fontSize = 18.sp,
+                        lineHeight = 27.sp,
+                        fontWeight = FontWeight(700),
+                        color = Color(0xFFFFFFFF),
+                    ),
+                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
+                )
+            }
+            IconButton(
+                onClick = { /*TODO*/ } ,
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .width(320.dp)
+                    .height(51.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
+                    .border(1.dp, Color(0xFFF05252), shape = RoundedCornerShape(size = 8.dp))
+
+            ) {
+                Text(
+                    text = "Masuk Sebagai Tamu",
+                    style = TextStyle(
+                        fontSize = 18.sp,
+                        lineHeight = 27.sp,
+                        fontWeight = FontWeight(700),
+                        color = Color(0xFFF05252),
+                    ),
+                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
+                )
+            }
         }
+
+
 
     }
 }

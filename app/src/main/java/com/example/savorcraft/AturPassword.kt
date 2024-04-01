@@ -40,22 +40,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
-class VerifikasiEmail : ComponentActivity() {
+class AturPassword : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TampilanVerifikasi()
+            TampilanAturPw()
         }
     }
 }
 
 @Composable
-fun TampilanVerifikasi(){
-    var c1 by remember { mutableStateOf("") }
-    var c2 by remember { mutableStateOf("") }
-    var c3 by remember { mutableStateOf("") }
-    var c4 by remember { mutableStateOf("") }
-
+fun TampilanAturPw(){
+    var password by remember { mutableStateOf("") }
+    var passwordCheck by remember { mutableStateOf("") }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFFFFFFFF)
@@ -66,13 +63,15 @@ fun TampilanVerifikasi(){
     Column {
         Row {
             IconButton(onClick = { /*TODO*/ }) {
-                Image(painter = painterResource(id = R.drawable.left), contentDescription ="",
+                Image(
+                    painter = painterResource(id = R.drawable.left), contentDescription = "",
                     modifier = Modifier
                         .width(60.dp)
                         .height(60.dp)
                         .background(color = Color(0xFFFFFFFF))
-                        .padding(start = 20.dp, top = 20.dp))
-                
+                        .padding(start = 20.dp, top = 20.dp)
+                )
+
             }
             Text(
                 text = "Verifikasi Email",
@@ -94,16 +93,17 @@ fun TampilanVerifikasi(){
                 .height(400.dp)
                 .padding(top = 70.dp, start = 50.dp)
         ) {
-            Image(painter = painterResource(id = R.drawable.manonthefloor), contentDescription = "",
+            Image(
+                painter = painterResource(id = R.drawable.isometric), contentDescription = "",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .height(600.dp)
                     .width(400.dp)
-                    )
+            )
         }
         Text(
-            text = "Silahkan cek email Anda!!! Kami mengirimkan kode verifikasi lupa password",
-            modifier = Modifier.padding(top = 30.dp),
+            text = "Silahkan atur ulang password baru Anda!!",
+            modifier = Modifier.padding(top = 30.dp).fillMaxWidth(),
             style = TextStyle(
                 fontSize = 18.sp,
                 lineHeight = 27.sp,
@@ -112,90 +112,85 @@ fun TampilanVerifikasi(){
                 textAlign = TextAlign.Center,
             )
         )
-
-    Row ( horizontalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxWidth()){
-            OutlinedTextField(
-                value = c1,
-                onValueChange = { c1 = it },
-                label = {Text("") },
-                modifier = Modifier
-                    .padding(10.dp)
-                    .width(52.dp)
-                    .fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.Black
-                )
-
-            )
-        OutlinedTextField(
-            value = c2,
-            onValueChange = { c2 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
-            )
-
-        )
-        OutlinedTextField(
-            value = c3,
-            onValueChange = { c3 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
-            )
-
-        )
-        OutlinedTextField(
-            value = c4,
-            onValueChange = { c4 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
-            )
-
-        )
-        }
         Text(
-            text = "Belum menerima kode verifikasi",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp),
+            text = "Password",
+            modifier = Modifier.padding(start = 20.dp, top = 16.dp),
             style = TextStyle(
-                fontSize = 16.sp,
-                lineHeight = 24.sp,
+                fontSize = 18.sp,
+                lineHeight = 27.sp,
                 fontWeight = FontWeight(500),
                 color = Color(0xFF1F2A37),
-                textAlign = TextAlign.Center
             )
         )
-        IconButton(onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = "Kirim ulang?",
-                modifier = Modifier.fillMaxWidth(),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFF1C64F2),
-                    textAlign = TextAlign.Center,
-                )
+
+        OutlinedTextField(
+            leadingIcon = {
+                Icon(painter = painterResource(id = R.drawable.lock1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            trailingIcon = {
+                Icon(painter = painterResource(id = R.drawable.hide1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("********") },
+            modifier = Modifier
+                .padding(start = 20.dp, end = 20.dp)
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
             )
-            
-        }
+        )
+
+        Text(
+            text = "Konfirmasi Password",
+            modifier = Modifier.padding(start = 20.dp, top = 16.dp),
+            style = TextStyle(
+                fontSize = 18.sp,
+                lineHeight = 27.sp,
+                fontWeight = FontWeight(500),
+                color = Color(0xFF1F2A37),
+            )
+        )
+
+        OutlinedTextField(
+            leadingIcon = {
+                Icon(painter = painterResource(id = R.drawable.lock1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            trailingIcon = {
+                Icon(painter = painterResource(id = R.drawable.hide1), contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(22.dp))
+            },
+            value = passwordCheck,
+            onValueChange = { passwordCheck = it },
+            label = { Text("********") },
+            modifier = Modifier
+                .padding(start = 20.dp, end = 20.dp)
+                .fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Black
+            )
+        )
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Bottom){
         IconButton(
             onClick = { /*TODO*/ } ,
             modifier = Modifier
@@ -216,16 +211,14 @@ fun TampilanVerifikasi(){
                 modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
             )
         }
-
-
     }
 
 }
 
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
-fun TampilanVerifikasiPreview() {
+fun TampilanAturPwPreview() {
     SavorCraftTheme {
-        TampilanVerifikasi()
+        TampilanAturPw()
     }
 }
