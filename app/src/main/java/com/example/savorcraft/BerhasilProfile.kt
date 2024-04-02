@@ -1,6 +1,5 @@
 package com.example.savorcraft
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -17,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -28,7 +26,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,17 +37,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
-class OnBoarding : ComponentActivity() {
+class BerhasilProfile : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Onboarding()
+            BerhasilPf()
         }
     }
 }
 
 @Composable
-fun Onboarding() {
+fun BerhasilPf() {
+    val provider = GoogleFont.Provider(
+        providerAuthority = "com.google.android.gms.fonts",
+        providerPackage = "com.google.android.gms",
+        certificates = R.array.com_google_android_gms_fonts_certs
+    )
+    val font2 = GoogleFont("dm sans")
+    val fontFamily2 = FontFamily(
+        Font(googleFont = font2, fontProvider = provider)
+    )
     val context = LocalContext.current
     val startActivity = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
@@ -62,21 +72,24 @@ fun Onboarding() {
         modifier = Modifier.fillMaxSize()
     ){
         Image(
-            painter = painterResource(id = R.drawable.onboarding),
+            painter = painterResource(id = R.drawable.joyful),
             contentDescription = "Login Image",
             modifier = Modifier
-                .size(width = 320.dp, height = 320.dp)
+                .size(width = 520.dp, height = 520.dp)
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 57.dp)
+                .padding(top = 70.dp)
 
         )
         Text(
-            text = "Bingung Bahannya ?",
+            text = "Yeah Berhasil Diubah !!",
             style = TextStyle(
-                fontSize = 32.sp,
-                lineHeight = 44.sp,
-                fontWeight = FontWeight(700),
+                fontSize = 20.sp,
+                lineHeight = 30.sp,
+                fontFamily = fontFamily2,
+                fontWeight = FontWeight(600),
                 color = Color(0xFF374151),
+
+                textAlign = TextAlign.Center,
             ),
             modifier = Modifier
                 .padding(top = 30.dp)
@@ -86,10 +99,11 @@ fun Onboarding() {
             modifier = Modifier
                 .padding(top = 26.dp, start = 20.dp, end = 20.dp)
                 .align(Alignment.CenterHorizontally),
-            text = "Savor Craft hadir dengan fitur Scanning bahan - bahan yang memudahkan Anda untuk mengetahui bahan tersebut dan mencari resep berdasarkan bahan yang tersedia.",
+            text = "Selamat Anda berhasil mengubah biodata profil kamu",
             style = TextStyle(
                 fontSize = 18.sp,
                 lineHeight = 27.sp,
+                fontFamily = fontFamily2,
                 fontWeight = FontWeight(500),
                 color = Color(0xFF6B7280),
                 textAlign = TextAlign.Center,
@@ -111,7 +125,7 @@ fun Onboarding() {
                     .background(color = Color(0xFFF05252), shape = RoundedCornerShape(size = 8.dp))
             ) {
                 Text(
-                    text = "Registrasi",
+                    text = "Lanjutkan",
                     style = TextStyle(
                         fontSize = 18.sp,
                         lineHeight = 27.sp,
@@ -121,41 +135,21 @@ fun Onboarding() {
                     modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
                 )
             }
-            IconButton(
-                onClick = { /*TODO*/ } ,
-                modifier = Modifier
-                    .padding(top = 20.dp)
-                    .width(320.dp)
-                    .height(51.dp)
-                    .align(Alignment.CenterHorizontally)
-                    .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
-                    .border(1.dp, Color(0xFFF05252), shape = RoundedCornerShape(size = 8.dp))
 
-            ) {
-                Text(
-                    text = "Masuk Sebagai Tamu",
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        lineHeight = 27.sp,
-                        fontWeight = FontWeight(700),
-                        color = Color(0xFFF05252),
-                    ),
-                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
-                )
             }
         }
 
 
 
     }
-}
+
 
 
 
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
-fun LoginPreview() {
+fun BerhasilPfPreview() {
     SavorCraftTheme {
-        Onboarding()
+        BerhasilPf()
     }
 }

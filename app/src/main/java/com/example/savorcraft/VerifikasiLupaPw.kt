@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -40,17 +39,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.savorcraft.ui.theme.SavorCraftTheme
 
-class VerifikasiEmail : ComponentActivity() {
+class VerifikasiLupaPw : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TampilanVerifikasi()
+            TampilanVerifikasiLupaPw()
         }
     }
 }
 
 @Composable
-fun TampilanVerifikasi(){
+fun TampilanVerifikasiLupaPw(){
     var c1 by remember { mutableStateOf("") }
     var c2 by remember { mutableStateOf("") }
     var c3 by remember { mutableStateOf("") }
@@ -72,7 +71,7 @@ fun TampilanVerifikasi(){
                         .height(60.dp)
                         .background(color = Color(0xFFFFFFFF))
                         .padding(start = 20.dp, top = 20.dp))
-                
+
             }
             Text(
                 text = "Verifikasi Email",
@@ -99,10 +98,10 @@ fun TampilanVerifikasi(){
                 modifier = Modifier
                     .height(600.dp)
                     .width(400.dp)
-                    )
+            )
         }
         Text(
-            text = "Silahkan cek email Anda!!! Kami mengirimkan kode verifikasi lupa password",
+            text = "Silahkan cek email Anda!!! Kami mengirimkan kode verifikasi registrasi",
             modifier = Modifier.padding(top = 30.dp),
             style = TextStyle(
                 fontSize = 18.sp,
@@ -113,12 +112,12 @@ fun TampilanVerifikasi(){
             )
         )
 
-    Row ( horizontalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxWidth()){
+        Row ( horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()){
             OutlinedTextField(
                 value = c1,
                 onValueChange = { c1 = it },
-                label = {Text("") },
+                label = { Text("") },
                 modifier = Modifier
                     .padding(10.dp)
                     .width(52.dp)
@@ -128,45 +127,45 @@ fun TampilanVerifikasi(){
                 )
 
             )
-        OutlinedTextField(
-            value = c2,
-            onValueChange = { c2 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
-            )
+            OutlinedTextField(
+                value = c2,
+                onValueChange = { c2 = it },
+                label = { Text("") },
+                modifier = Modifier
+                    .padding(10.dp)
+                    .width(52.dp)
+                    .fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.Black
+                )
 
-        )
-        OutlinedTextField(
-            value = c3,
-            onValueChange = { c3 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
             )
+            OutlinedTextField(
+                value = c3,
+                onValueChange = { c3 = it },
+                label = { Text("") },
+                modifier = Modifier
+                    .padding(10.dp)
+                    .width(52.dp)
+                    .fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.Black
+                )
 
-        )
-        OutlinedTextField(
-            value = c4,
-            onValueChange = { c4 = it },
-            label = {Text("") },
-            modifier = Modifier
-                .padding(10.dp)
-                .width(52.dp)
-                .fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Black
             )
+            OutlinedTextField(
+                value = c4,
+                onValueChange = { c4 = it },
+                label = { Text("") },
+                modifier = Modifier
+                    .padding(10.dp)
+                    .width(52.dp)
+                    .fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.Black
+                )
 
-        )
+            )
         }
         Text(
             text = "Belum menerima kode verifikasi",
@@ -194,7 +193,7 @@ fun TampilanVerifikasi(){
                     textAlign = TextAlign.Center,
                 )
             )
-            
+
         }
         IconButton(
             onClick = { /*TODO*/ } ,
@@ -224,8 +223,8 @@ fun TampilanVerifikasi(){
 
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
-fun TampilanVerifikasiPreview() {
+fun TampilanVerifikasiLupaPwPreview() {
     SavorCraftTheme {
-        TampilanVerifikasi()
+        TampilanVerifikasiLupaPw()
     }
 }
